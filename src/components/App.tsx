@@ -1,3 +1,4 @@
+import { isAdmin, logoutAdmin } from "../utils/admin"
 import { useCallback, useRef, useState } from 'react'
 import BirthForm from './BirthForm.tsx'
 import type { BirthFormHandle, SavedFormState } from './BirthForm.tsx'
@@ -141,6 +142,24 @@ export default function App() {
         <Guide />
       </main>
 
+      
+      {isAdmin() && (
+        <div style={{
+          position:"fixed",top:12,right:12,zIndex:9999,
+          background:"rgba(100,0,0,0.88)",color:"#fff",
+          padding:"6px 14px",borderRadius:"20px",
+          fontSize:"0.75rem",fontWeight:700,
+          display:"flex",alignItems:"center",gap:"8px",
+          backdropFilter:"blur(8px)",boxShadow:"0 2px 12px rgba(0,0,0,0.4)"
+        }}>
+          🔑 관리자 모드
+          <button onClick={()=>{logoutAdmin();window.location.reload()}} style={{
+            background:"rgba(255,255,255,0.2)",border:"none",
+            color:"#fff",borderRadius:"10px",padding:"2px 8px",
+            cursor:"pointer",fontSize:"0.7rem"
+          }}>로그아웃</button>
+        </div>
+      )}
       <footer style={{
         textAlign:"center",fontSize:"0.72rem",
         color:"rgba(167,139,250,0.35)",padding:"24px 0",position:"relative",zIndex:1

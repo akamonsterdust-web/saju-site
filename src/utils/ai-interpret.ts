@@ -1,3 +1,4 @@
+import { isAdmin } from "./admin"
 // Anthropic API를 사용한 사주 해석 엔진
 import Anthropic from '@anthropic-ai/sdk'
 import type { SajuResult } from '@orrery/core/types'
