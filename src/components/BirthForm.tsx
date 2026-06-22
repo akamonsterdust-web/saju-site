@@ -284,9 +284,9 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
     <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm dark:shadow-none">
       <div className="flex flex-col items-center md:flex-row md:items-start gap-5">
         {/* 로고 */}
-        <div className="flex flex-col items-center shrink-0">
+        <div className="flex flex-col items-center shrink-0" style={{display:"none"}}>
           <img
-            src={logo}
+            src={logo} style={{display:"none"}}
             alt="혼천의"
             className="w-48 md:w-64"
           />
@@ -551,6 +551,7 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
           {/* 계산 버튼 */}
           <button
             type="submit"
+            style={{background:"linear-gradient(135deg,#7c3aed,#6d28d9)",color:"#fff",borderRadius:"12px",padding:"14px",fontSize:"1rem",fontWeight:700,border:"none",cursor:"pointer",width:"100%",letterSpacing:"0.05em"}}
             className="mt-5 w-full h-11 bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900 text-base font-medium rounded-lg hover:bg-gray-700 dark:hover:bg-gray-300 active:scale-[0.98] transition-all"
           >
             {t('form.calculate')}

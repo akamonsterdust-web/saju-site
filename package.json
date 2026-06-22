@@ -16,6 +16,7 @@
     "generate-og-image": "bun scripts/generate-og-image.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.105.0",
     "@photostructure/tz-lookup": "^11.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

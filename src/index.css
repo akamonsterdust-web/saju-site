@@ -3,71 +3,214 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --color-tree: #22c55e;
-  --color-fire: #ef4444;
-  --color-earth: #eab308;
-  --color-metal: #9ca3af;
-  --color-water: #1a1a1a;
-
+  --color-tree: #16a34a;
+  --color-fire: #e11d48;
+  --color-earth: #d97706;
+  --color-metal: #64748b;
+  --color-water: #2563eb;
   --wheel-axis: #374151;
   --wheel-grid: #9ca3af;
   --wheel-outline: #6b7280;
-  --wheel-inner: #d1d5db;
+  --wheel-inner: #fafafa;
   --wheel-planet: #1f2937;
-  --wheel-segment-opacity: 0.12;
-  --wheel-segment-stroke-opacity: 0.3;
+  --wheel-segment-opacity: 0.08;
+  --wheel-segment-stroke-opacity: 0.2;
+
+  /* 무신사 스타일 컬러 시스템 */
+  --ivory-bg: #f8f6f3;
+  --deep-rose: #a8556b;
+  --deep-rose-hover: #8f4658;
+  --charcoal: #2b2b2b;
+  --charcoal-light: #3d3d3d;
+  --border-subtle: #e6e3dd;
+  --white-clean: #ffffff;
 }
 
-.dark {
-  --wheel-axis: #d1d5db;
-  --wheel-grid: #6b7280;
-  --wheel-outline: #9ca3af;
-  --wheel-inner: #4b5563;
-  --wheel-planet: #e5e7eb;
-  --wheel-segment-opacity: 0.2;
-  --wheel-segment-stroke-opacity: 0.5;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family:
-    'Pretendard Variable', Pretendard,
-    'Noto Sans KR',
-    'Apple SD Gothic Neo', 'Malgun Gothic',
-    sans-serif;
+  font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: var(--ivory-bg);
+  min-height: 100vh;
+  color: var(--charcoal);
 }
 
+.min-h-screen {
+  background: var(--ivory-bg) !important;
+  color: var(--charcoal) !important;
+}
+
+/* 메인 카드 */
+.bg-white {
+  background: var(--white-clean) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04) !important;
+  border-radius: 12px !important;
+  backdrop-filter: none !important;
+}
+.bg-gray-50 { background: var(--ivory-bg) !important; }
+.bg-gray-950 { background: var(--ivory-bg) !important; }
+
+.dark .bg-gray-900 {
+  background: var(--white-clean) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04) !important;
+  border-radius: 12px !important;
+  backdrop-filter: none !important;
+}
+.dark .bg-gray-800 {
+  background: #fdfcfb !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 10px !important;
+  backdrop-filter: none !important;
+}
+
+/* 텍스트 */
+.text-gray-900 { color: var(--charcoal) !important; }
+.text-gray-800 { color: var(--charcoal-light) !important; }
+.text-gray-700 { color: #555555 !important; }
+.text-gray-600 { color: #6b6b6b !important; }
+.text-gray-500 { color: #888888 !important; }
+.text-gray-400 { color: #a8a8a8 !important; }
+.dark .text-gray-100 { color: var(--charcoal) !important; }
+.dark .text-gray-200 { color: var(--charcoal-light) !important; }
+.dark .text-gray-300 { color: #555555 !important; }
+.dark .text-gray-400 { color: #6b6b6b !important; }
+.dark .text-gray-500 { color: #888888 !important; }
+
+/* 보더 */
+.border-gray-200 { border-color: var(--border-subtle) !important; }
+.border-gray-700 { border-color: var(--border-subtle) !important; }
+.dark .border-gray-700 { border-color: var(--border-subtle) !important; }
+hr { border-color: var(--border-subtle) !important; }
+
+/* 계산 버튼 - 딥로즈 (무신사 느낌) */
+.bg-gray-800 {
+  background: var(--deep-rose) !important;
+  box-shadow: 0 2px 10px rgba(168,85,107,0.15) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+.hover\:bg-gray-700:hover {
+  background: var(--deep-rose-hover) !important;
+  box-shadow: 0 4px 16px rgba(168,85,107,0.25) !important;
+}
+.dark .bg-gray-100 {
+  background: var(--deep-rose) !important;
+  box-shadow: 0 2px 10px rgba(168,85,107,0.15) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+.dark .hover\:bg-gray-200:hover {
+  background: var(--deep-rose-hover) !important;
+}
+.dark .text-gray-900 { color: #ffffff !important; }
+
+/* 버튼 공통 */
+button[type="submit"] {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* 입력 필드 */
+.bg-gray-100 {
+  background: var(--white-clean) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--charcoal) !important;
+  border-radius: 8px !important;
+}
+.dark .bg-gray-800 {
+  background: var(--white-clean) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--charcoal) !important;
+  border-radius: 8px !important;
+}
+input:focus, select:focus {
+  outline: none !important;
+  border-color: var(--deep-rose) !important;
+  box-shadow: 0 0 0 3px rgba(168,85,107,0.08) !important;
+}
+
+/* 선택된 탭 */
+.border-gray-800 { border-color: var(--deep-rose) !important; }
+.dark .border-gray-200 { border-color: var(--deep-rose) !important; }
+
+/* 태그/배지 - 무신사 파스텔 */
+.bg-red-100 {
+  background: #fef2f4 !important;
+  border: 1px solid #f7d5dd !important;
+  color: var(--deep-rose) !important;
+  border-radius: 6px !important;
+}
+.bg-blue-100 {
+  background: #f0f5fa !important;
+  border: 1px solid #cfe2f3 !important;
+  color: #4a6fa5 !important;
+  border-radius: 6px !important;
+}
+.bg-green-100 {
+  background: #f1f8f4 !important;
+  border: 1px solid #c8e6d4 !important;
+  color: #3e8561 !important;
+  border-radius: 6px !important;
+}
+.bg-yellow-100 {
+  background: #fef9f0 !important;
+  border: 1px solid #f8e8c8 !important;
+  color: #9b7241 !important;
+  border-radius: 6px !important;
+}
+.bg-purple-100 {
+  background: #f7f4f9 !important;
+  border: 1px solid #e5dae9 !important;
+  color: #7a5c94 !important;
+  border-radius: 6px !important;
+}
+.bg-orange-100 {
+  background: #fef6f0 !important;
+  border: 1px solid #f8dfc8 !important;
+  color: #c97946 !important;
+  border-radius: 6px !important;
+}
+
+/* 텍스트 컬러 */
+.text-red-600 { color: var(--deep-rose) !important; }
+.text-blue-600 { color: #4a6fa5 !important; }
+.text-green-600 { color: #3e8561 !important; }
+.text-yellow-600 { color: #9b7241 !important; }
+.text-red-500 { color: var(--deep-rose) !important; }
+.text-blue-500 { color: #5a7fb8 !important; }
+.text-green-500 { color: #4a9670 !important; }
+.dark .text-red-400 { color: var(--deep-rose) !important; }
+.dark .text-blue-400 { color: #6b8fc5 !important; }
+.dark .text-green-400 { color: #5aa880 !important; }
+.dark .text-yellow-400 { color: #b58856 !important; }
+
+/* 한자 폰트 */
 .font-hanja {
-  font-family:
-    'Noto Sans KR',
-    'Apple SD Gothic Neo', 'Malgun Gothic',
-    sans-serif;
+  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
 }
 
-.el-tree { color: var(--color-tree); }
-.el-fire { color: var(--color-fire); }
-.el-earth { color: var(--color-earth); }
-.el-metal { color: var(--color-metal); }
-.el-water { color: var(--color-water); }
+/* 오행 */
+.el-tree { color: #3e8561; }
+.el-fire { color: #c8506a; }
+.el-earth { color: #9b7241; }
+.el-metal { color: #6b7280; }
+.el-water { color: #4a6fa5; }
 
-.bg-el-tree { background-color: color-mix(in srgb, var(--color-tree) 15%, transparent); }
-.bg-el-fire { background-color: color-mix(in srgb, var(--color-fire) 15%, transparent); }
-.bg-el-earth { background-color: color-mix(in srgb, var(--color-earth) 15%, transparent); }
-.bg-el-metal { background-color: color-mix(in srgb, var(--color-metal) 15%, transparent); }
-.bg-el-water { background-color: color-mix(in srgb, var(--color-water) 15%, transparent); }
+/* 스크롤바 */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ivory-bg); }
+::-webkit-scrollbar-thumb { background: #ccc5ba; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #b3aa9d; }
 
-.bg-el-solid-tree  { background-color: var(--color-tree); color: #fff; }
-.bg-el-solid-fire  { background-color: var(--color-fire); color: #fff; }
-.bg-el-solid-earth { background-color: var(--color-earth); color: #1a1a1a; }
-.bg-el-solid-metal { background-color: #fff; color: #000; box-shadow: inset 0 0 0 1px #d1d5db; }
-.bg-el-solid-water { background-color: var(--color-water); color: #fff; }
-
-/* Dark mode: water element border for visibility */
-.dark .bg-el-solid-water { box-shadow: inset 0 0 0 1px #6b7280; }
-
-/* Dialog */
-dialog::backdrop { background: rgba(0, 0, 0, 0.4); }
-dialog[open] { border: none; }
-
+/* 선택 영역 */
+::selection { background: rgba(168,85,107,0.12); color: var(--charcoal); }

@@ -39,118 +39,116 @@ export default function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 relative">
+    <div className="min-h-screen relative" style={{position:"relative",zIndex:1}}>
       <ThemeToggle />
       <LanguageToggle />
-      <a
-        href="https://github.com/rath/orrery"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed top-0 right-0 z-50"
-        aria-label="View source on GitHub"
-      >
-        <svg width="60" height="60" viewBox="0 0 250 250" className="fill-gray-700 text-white" aria-hidden="true">
-          <path d="M0 0l115 115h15l12 27 108 108V0z" />
-          <path d="M128.3 109c-14.5-9.3-9.3-19.4-9.3-19.4 3-6.9 1.5-11 1.5-11-1.3-6.6 2.9-2.3 2.9-2.3 3.9 4.6 2.1 11 2.1 11-2.6 10.3 5.1 14.6 8.9 15.9" fill="currentColor" style={{ transformOrigin: '130px 106px' }} />
-          <path d="M115 115c-.1.1 3.7 1.5 4.8.4l13.9-13.8c3.2-2.4 6.2-3.2 8.5-3 -8.4-10.6-14.7-24.2 1.6-40.6 4.7-4.6 10.2-6.8 15.9-7 .6-1.6 3.5-7.4 11.7-10.9 0 0 4.7 2.4 7.4 16.1 4.3 2.4 8.4 5.6 12.1 9.2 3.6 3.6 6.8 7.8 9.2 12.2 13.7 2.6 16.2 7.3 16.2 7.3-3.6 8.2-9.4 11.1-10.9 11.7-.3 5.8-2.4 11.2-7.1 15.9-16.4 16.4-29.4 11.6-36.4 8.8 .2 2.8-1 6.8-5 10.8L141 136.5c-1.2 1.2.6 5.4.8 5.3z" fill="currentColor" />
-        </svg>
-      </a>
-      <main className="max-w-2xl mx-auto px-4 py-6">
-        <div className="text-center mb-6">
-          <p className="text-base text-gray-500 dark:text-gray-400 tracking-wide">
-            {t('app.subtitle1')}<br className="sm:hidden" /> <span className="font-medium text-gray-700 dark:text-gray-200">{t('app.subtitle.tool')}</span> {t('app.subtitle2')}
+      <main className="max-w-2xl mx-auto px-4 py-8 relative" style={{zIndex:1}}>
+
+        <div className="text-center mb-8">
+          <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:"10px",marginBottom:"8px"}}>
+            <span style={{fontSize:"2.2rem"}}>🔮</span>
+            <h1 style={{
+              fontSize:"2.4rem",fontWeight:800,margin:0,
+              color:"#a8556b",
+              letterSpacing:"-0.02em"
+            }}>곶휴노사주</h1>
+            <span style={{fontSize:"2.2rem"}}>🌙</span>
+          </div>
+          <p style={{color:"#6b6b6b",fontSize:"0.82rem",letterSpacing:"0.15em",fontWeight:300,margin:"4px 0"}}>
+            사주팔자 · 자미두수 · 서양 점성술
           </p>
-          <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">{t('app.subtitle3')}</p>
+          <p style={{color:"#888888",fontSize:"0.72rem",margin:"4px 0 0"}}>
+            AI 명리학 · 생년월일시로 당신의 운명을 읽다
+          </p>
         </div>
-        <BirthForm
-          ref={birthFormRef}
-          onSubmit={handleSubmit}
-          externalState={externalFormState}
-          onExternalStateConsumed={() => setExternalFormState(null)}
-        />
-        <div className="flex justify-end mt-2">
-          <button
-            type="button"
-            onClick={() => setProfileModalOpen(true)}
-            className="flex items-center gap-1 text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+
+        <div style={{
+          background:"rgba(20,14,50,0.85)",backdropFilter:"blur(20px)",
+          borderRadius:"16px",border:"1px solid rgba(167,139,250,0.2)",
+          padding:"24px",marginBottom:"12px"
+        }}>
+          <BirthForm
+            ref={birthFormRef}
+            onSubmit={handleSubmit}
+            externalState={externalFormState}
+            onExternalStateConsumed={() => setExternalFormState(null)}
+          />
+        </div>
+
+        <div style={{display:"flex",justifyContent:"flex-end",marginBottom:"16px"}}>
+          <button type="button" onClick={() => setProfileModalOpen(true)} style={{
+            display:"flex",alignItems:"center",gap:"4px",
+            fontSize:"0.72rem",color:"rgba(167,139,250,0.45)",
+            background:"none",border:"none",cursor:"pointer"
+          }}>
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
             </svg>
-            {t('app.profileManage')}
+            프로필 관리
           </button>
         </div>
 
         {birthInput && (
-          <>
-            {/* 탭 네비게이션 */}
-            <div ref={resultsRef} className="flex items-center border-b border-gray-200 dark:border-gray-700 mt-6 mb-4">
-              <button
-                className={`px-2 sm:px-4 py-2 text-sm sm:text-base font-medium whitespace-nowrap border-b-2 transition-colors ${
-                  tab === 'saju'
-                    ? 'border-gray-800 text-gray-800 dark:border-gray-200 dark:text-gray-200'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-                }`}
-                onClick={() => setTab('saju')}
-              >
-                {t('app.tab.saju')}
-              </button>
-              <button
-                className={`px-2 sm:px-4 py-2 text-sm sm:text-base font-medium whitespace-nowrap border-b-2 transition-colors ${
-                  tab === 'ziwei'
-                    ? 'border-gray-800 text-gray-800 dark:border-gray-200 dark:text-gray-200'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-                }`}
-                onClick={() => setTab('ziwei')}
-              >
-                {t('app.tab.ziwei')}
-              </button>
-              <button
-                className={`px-2 sm:px-4 py-2 text-sm sm:text-base font-medium whitespace-nowrap border-b-2 transition-colors ${
-                  tab === 'natal'
-                    ? 'border-gray-800 text-gray-800 dark:border-gray-200 dark:text-gray-200'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-                }`}
-                onClick={() => setTab('natal')}
-              >
-                {t('app.tab.natal')}
-              </button>
-              <div className="ml-auto pb-1">
+          <div ref={resultsRef} style={{
+            background:"rgba(20,14,50,0.85)",backdropFilter:"blur(20px)",
+            borderRadius:"16px",border:"1px solid rgba(167,139,250,0.2)",
+            marginBottom:"16px",overflow:"hidden"
+          }}>
+            <div style={{
+              display:"flex",alignItems:"center",
+              borderBottom:"1px solid rgba(167,139,250,0.2)",padding:"0 16px"
+            }}>
+              {(["saju","ziwei","natal"] as Tab[]).map((t2) => (
+                <button key={t2} onClick={() => setTab(t2)} style={{
+                  padding:"12px 14px",fontSize:"0.85rem",fontWeight:500,
+                  border:"none",background:"none",cursor:"pointer",whiteSpace:"nowrap",
+                  borderBottom:tab===t2?"2px solid #a78bfa":"2px solid transparent",
+                  color:tab===t2?"#c4b5fd":"rgba(167,139,250,0.4)",transition:"all 0.2s"
+                }}>
+                  {t2==="saju"?"🀄 사주팔자":t2==="ziwei"?"⭐ 자미두수":"🌌 출생차트"}
+                </button>
+              ))}
+              <div style={{marginLeft:"auto",paddingBottom:"4px"}}>
                 <CopyButton
-                  label={<>{t('app.copyAll')}<br />{t('app.copyAllSub')}</>}
+                  label={<>{t("app.copyAll")}<br />{t("app.copyAllSub")}</>}
                   getText={async () => {
                     const saju = calculateSaju(birthInput)
                     const parts = [sajuToText(saju)]
                     if (!birthInput.unknownTime) {
                       const chart = createChart(
-                        birthInput.year, birthInput.month, birthInput.day,
-                        birthInput.hour,
-                        birthInput.minute,
-                        birthInput.gender === 'M',
-                        birthInput.timezone,
-                        birthInput.longitude,
+                        birthInput.year,birthInput.month,birthInput.day,
+                        birthInput.hour,birthInput.minute,
+                        birthInput.gender==="M",
+                        birthInput.timezone,birthInput.longitude,
                       )
                       parts.push(ziweiToText(chart))
                     }
                     const natal = await calculateNatal(birthInput)
                     parts.push(natalToText(natal))
-                    return parts.join('\n\n')
+                    return parts.join("\n\n")
                   }}
                 />
               </div>
             </div>
-
-            {tab === 'saju' && <SajuView input={birthInput} />}
-            {tab === 'ziwei' && <ZiweiView input={birthInput} />}
-            {tab === 'natal' && <NatalView input={birthInput} />}
-          </>
+            <div style={{padding:"16px"}}>
+              {tab==="saju" && <SajuView input={birthInput} />}
+              {tab==="ziwei" && <ZiweiView input={birthInput} />}
+              {tab==="natal" && <NatalView input={birthInput} />}
+            </div>
+          </div>
         )}
 
         <Guide />
       </main>
-      <footer className="text-center text-xs text-gray-400 dark:text-gray-500 py-6">
-        <p>&copy; 2026 Jang-Ho Hwang &middot; <a href="https://x.com/xrath" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 dark:hover:text-gray-300">@xrath</a> &middot; <a href="https://x.com/xrath/status/2022548658562937028" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 dark:hover:text-gray-300">{t('app.intro')}</a></p>
+
+      <footer style={{
+        textAlign:"center",fontSize:"0.72rem",
+        color:"rgba(167,139,250,0.35)",padding:"24px 0",position:"relative",zIndex:1
+      }}>
+        <p style={{margin:"0 0 4px"}}>🔮 곶휴노사주 · AI 명리학 서비스</p>
+        <p style={{margin:0}}>사주는 참고용이며, 모든 선택은 본인의 의지에 달려 있습니다 ✨</p>
       </footer>
+
       <ProfileModal
         open={profileModalOpen}
         onClose={() => setProfileModalOpen(false)}

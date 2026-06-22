@@ -7,6 +7,7 @@ import JwabeopChart from './JwabeopChart.tsx'
 import InjongbeopChart from './InjongbeopChart.tsx'
 import DaewoonTable from './DaewoonTable.tsx'
 import TransitView from './TransitView.tsx'
+import AIInterpretButton from './AIInterpretButton.tsx'
 import CopyButton from '../CopyButton.tsx'
 import { sajuToText } from '../../utils/text-export.ts'
 import type { BirthInput } from '@orrery/core/types'
@@ -25,6 +26,9 @@ export default function SajuView({ input }: Props) {
 
   return (
     <div className="space-y-6">
+      {/* AI 해석 */}
+      <AIInterpretButton saju={result} />
+
       {/* 명식 테이블 */}
       <section className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
         <div className="flex items-center justify-between mb-3">

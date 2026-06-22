@@ -8,7 +8,7 @@ const STORAGE_KEY = 'orrery-theme'
 function getStored(): ThemePreference {
   const v = localStorage.getItem(STORAGE_KEY)
   if (v === 'light' || v === 'dark') return v
-  return 'system'
+  return 'dark'
 }
 
 function applyTheme(pref: ThemePreference) {

@@ -68,6 +68,37 @@ src/                    # 웹앱 (Vite + React)
 - TypeScript 5 (strict mode)
 - **@orrery/core**: tsup (빌드), Vitest (테스트), lunar-javascript (음력 변환)
 - **웹앱**: React 19, Vite 7 (빌드/개발 서버), Tailwind CSS 4 (스타일링), Vitest (테스트)
+- **AI**: @anthropic-ai/sdk (Claude API를 통한 사주 해석)
+
+## AI 사주 해석 기능
+
+브라우저에서 Anthropic Claude API를 직접 호출하여 사주 해석을 제공합니다.
+
+### 설정
+
+1. `.env` 파일 생성 (`.env.example` 참고):
+   ```bash
+   VITE_ANTHROPIC_API_KEY=sk-ant-api03-...
+   ```
+
+2. API 키 발급: https://console.anthropic.com/
+
+### 구조
+
+- `src/utils/ai-interpret.ts`: Anthropic API 호출 로직
+  - `interpretSaju()`: 사주 결과를 텍스트로 변환하여 Claude에 전달
+  - 해석 초점 선택 가능 (성격/직업/연애/건강/전반)
+  - 사용자 질문 추가 가능
+- `src/components/saju/AIInterpretButton.tsx`: UI 컴포넌트
+  - 해석 옵션 선택 인터페이스
+  - 로딩/에러 상태 관리
+  - 결과 표시 및 복사 기능
+
+### 주의사항
+
+- **테스트용**: 프론트엔드에서 직접 API 호출 (`dangerouslyAllowBrowser: true`)
+- **프로덕션**: API 키 노출 방지를 위해 백엔드 프록시 구현 필요
+- 모델: `claude-sonnet-4-20250514` 사용
 
 ## 포팅 주의사항
 
