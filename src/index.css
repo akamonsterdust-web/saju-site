@@ -172,3 +172,17 @@ form button[type="submit"]:hover {
   box-shadow: 0 8px 32px rgba(109,40,217,0.65) !important;
   transform: translateY(-2px) !important;
 }
+
+/* ── 계산버튼 ID 셀렉터 (최강) ── */
+#calc-btn {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(109,40,217,0.5) !important;
+  font-weight: 700 !important;
+}
+#calc-btn:hover {
+  background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%) !important;
+  transform: translateY(-2px) !important;
+}
