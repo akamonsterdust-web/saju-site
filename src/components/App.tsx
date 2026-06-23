@@ -75,7 +75,7 @@ export default function App() {
           </div>
           <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'10px',marginBottom:'14px'}}>
             <span style={{fontSize:'clamp(1.6rem,5vw,2.2rem)'}}>🔮</span>
-            <h1 style={{fontSize:'clamp(2rem,8vw,3rem)',fontWeight:900,margin:0,background:'linear-gradient(135deg,#f0d0ff 0%,#c084fc 35%,#a855f7 65%,#fbbf24 100%)',WebkitBackgroundClip:'text' as any,WebkitTextFillColor:'transparent',backgroundClip:'text' as any,letterSpacing:'-0.03em',lineHeight:1.1}}>곶휴노사주</h1>
+            <h1 className="saju-title" style={{fontSize:'clamp(2rem,8vw,3rem)',fontWeight:900,margin:0,background:'linear-gradient(135deg,#f0d0ff 0%,#c084fc 35%,#a855f7 65%,#fbbf24 100%)',WebkitBackgroundClip:'text' as any,WebkitTextFillColor:'transparent',backgroundClip:'text' as any,letterSpacing:'-0.03em',lineHeight:1.1}}>곶휴노사주</h1>
             <span style={{fontSize:'clamp(1.6rem,5vw,2.2rem)'}}>🌙</span>
           </div>
           <p style={{color:'rgba(200,175,255,0.55)',fontSize:'clamp(0.72rem,2.5vw,0.82rem)',letterSpacing:'0.18em',fontWeight:300,margin:'0 0 6px'}}>사주팔자 · 자미두수 · 서양 점성술</p>

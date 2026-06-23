@@ -268,3 +268,11 @@ input:focus, select:focus {
 .dark .border-gray-200 {
   border-color: rgba(147, 112, 219, 0.25) !important;
 }
+
+/* 타이틀 그라데이션 */
+.saju-title {
+  background: linear-gradient(135deg, #f0d0ff 0%, #c084fc 35%, #a855f7 65%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
