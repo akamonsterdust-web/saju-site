@@ -241,3 +241,30 @@ input:focus, select:focus {
 .dark .border-gray-200 {
   border-color: rgba(147, 112, 219, 0.25) !important;
 }
+
+/* 다크 테마 강제 적용 */
+.dark form,
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: rgba(15, 10, 40, 0.6) !important;
+  color: #e8e0ff !important;
+  border-color: rgba(147, 112, 219, 0.3) !important;
+}
+
+.dark .bg-white {
+  background-color: rgba(15, 10, 40, 0.6) !important;
+}
+
+.dark .bg-gray-900 {
+  background-color: rgba(15, 10, 40, 0.8) !important;
+}
+
+.dark .text-gray-800,
+.dark .text-gray-900 {
+  color: #e8e0ff !important;
+}
+
+.dark .border-gray-200 {
+  border-color: rgba(147, 112, 219, 0.25) !important;
+}
