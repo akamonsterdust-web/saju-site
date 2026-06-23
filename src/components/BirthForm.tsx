@@ -546,6 +546,7 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
             {t('form.privacy2')}
           </p>
         </div>
+      </div>
     </form>
   )
 })
