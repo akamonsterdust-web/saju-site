@@ -155,3 +155,20 @@ input:focus, select:focus, textarea:focus {
 
 /* ── 선택 영역 ── */
 ::selection { background: rgba(167,139,250,0.25); color: #f0ebff; }
+
+/* ── 계산 버튼 강제 적용 (최우선) ── */
+form button[type="submit"] {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(109,40,217,0.5) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.07em !important;
+  cursor: pointer !important;
+}
+form button[type="submit"]:hover {
+  background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%) !important;
+  box-shadow: 0 8px 32px rgba(109,40,217,0.65) !important;
+  transform: translateY(-2px) !important;
+}
