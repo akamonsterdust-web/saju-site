@@ -62,16 +62,37 @@ const saved = loadSaved()
 const initialLatitude = saved?.latitude ?? SEOUL.lat
 const initialLongitude = saved?.longitude ?? SEOUL.lon
 
-const selectClass =
-  'w-full h-10 pl-3 pr-8 border border-gray-200 dark:border-gray-700 rounded-lg text-base text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-900 ' +
-  'appearance-none bg-[length:16px_16px] bg-[position:right_8px_center] bg-no-repeat ' +
-  "bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%239ca3af%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.23%207.21a.75.75%200%20011.06.02L10%2011.168l3.71-3.938a.75.75%200%20111.08%201.04l-4.25%204.5a.75.75%200%2001-1.08%200l-4.25-4.5a.75.75%200%2001.02-1.06z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')] " +
-  'focus:outline-none focus:ring-2 focus:ring-gray-800/20 dark:focus:ring-gray-200/20 focus:border-gray-400 dark:focus:border-gray-500 ' +
-  'transition-all disabled:opacity-40 disabled:bg-gray-50 dark:disabled:bg-gray-800'
-
-const inputClass =
-  'w-full h-10 px-3 border border-gray-200 dark:border-gray-700 rounded-lg text-base text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-900 ' +
-  'focus:outline-none focus:ring-2 focus:ring-gray-800/20 dark:focus:ring-gray-200/20 focus:border-gray-400 dark:focus:border-gray-500 transition-all'
+const S = {
+  field: {
+    width:'100%', height:'40px', padding:'0 12px',
+    background:'rgba(13,11,30,0.65)',
+    border:'1px solid rgba(167,139,250,0.25)',
+    borderRadius:'10px', color:'#e8e0ff', fontSize:'0.95rem',
+    outline:'none', transition:'border-color 0.2s',
+    appearance:'none' as const,
+  } as React.CSSProperties,
+  label: {
+    display:'block', fontSize:'0.78rem', color:'rgba(167,139,250,0.55)',
+    marginBottom:'6px', fontWeight:500,
+  } as React.CSSProperties,
+  seg: (active: boolean): React.CSSProperties => ({
+    padding:'0 16px', height:'32px', borderRadius:'8px',
+    border: active ? '1px solid rgba(167,139,250,0.4)' : 'none',
+    background: active ? 'rgba(109,40,217,0.55)' : 'transparent',
+    color: active ? '#f0ebff' : 'rgba(167,139,250,0.45)',
+    fontWeight: active ? 600 : 400,
+    cursor:'pointer', fontSize:'0.88rem', transition:'all 0.18s',
+    boxShadow: active ? '0 2px 8px rgba(109,40,217,0.3)' : 'none',
+  }),
+  segWrap: {
+    display:'inline-flex', alignItems:'center',
+    background:'rgba(13,11,30,0.5)',
+    border:'1px solid rgba(167,139,250,0.15)',
+    borderRadius:'10px', padding:'3px', gap:'2px',
+  } as React.CSSProperties,
+}
+const selectClass = ''
+const inputClass = ''
 
 
 const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubmit, externalState, onExternalStateConsumed }, ref) {
@@ -281,28 +302,17 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{background:"rgba(12,8,35,0.01)",borderRadius:"16px",border:"none",padding:0}}>
-      <div className="flex flex-col items-center md:flex-row md:items-start gap-5">
-        {/* 로고 */}
-        <div className="flex flex-col items-center shrink-0" style={{display:"none"}}>
-          <img
-            src={logo} style={{display:"none"}}
-            alt="혼천의"
-            className="w-48 md:w-64"
-          />
-          <span className="text-base text-gray-400 dark:text-gray-500 font-hanja -mt-1">혼천의(渾天儀)</span>
-        </div>
-
-        {/* 폼 필드 전체 */}
-        <div className="w-full min-w-0">
+    <form onSubmit={handleSubmit} style={{padding:0,margin:0,border:"none",background:"transparent"}}>
+      <div style={{display:"flex",flexDirection:"column",gap:"20px"}}>
+        <div style={{width:"100%"}}>
           {/* 생년월일 */}
-          <fieldset>
-            <legend className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">{t('form.birthDate')}</legend>
-            <div className="grid grid-cols-3 gap-2">
+          <fieldset style={{border:"none",padding:0,margin:0}}>
+            <legend style={S.label}>{t('form.birthDate')}</legend>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"8px"}}>
               <select
                 value={year}
                 onChange={e => setYear(Number(e.target.value))}
-                className={selectClass}
+                style={S.field}
               >
                 {Array.from({ length: currentYear - 1900 + 1 }, (_, i) => {
                   const y = currentYear - i
@@ -312,7 +322,7 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
               <select
                 value={month}
                 onChange={e => setMonth(Number(e.target.value))}
-                className={selectClass}
+                style={S.field}
               >
                 {Array.from({ length: 12 }, (_, i) => (
                   <option key={i + 1} value={i + 1}>{`${i + 1}${t('form.monthSuffix')}`}</option>
@@ -321,7 +331,7 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
               <select
                 value={day}
                 onChange={e => setDay(Number(e.target.value))}
-                className={selectClass}
+                style={S.field}
               >
                 {Array.from({ length: 31 }, (_, i) => (
                   <option key={i + 1} value={i + 1}>{`${i + 1}${t('form.daySuffix')}`}</option>
@@ -331,21 +341,17 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
           </fieldset>
 
           {isKDT && (
-            <div className="mt-2 px-3 py-2 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-700 dark:text-amber-400 leading-relaxed">
-              {t('form.kdt')}
-            </div>
+            <div style={{marginTop:"8px",padding:"8px 12px",background:"rgba(217,119,6,0.12)",border:"1px solid rgba(217,119,6,0.3)",borderRadius:"8px",fontSize:"0.82rem",color:"#fbbf24",lineHeight:1.6}}>{t('form.kdt')}</div>
           )}
           {!isKDT && isKstHistoricalAnomaly && (
-            <div className="mt-2 px-3 py-2 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-700 dark:text-amber-400 leading-relaxed">
-              {t('form.kstHistoricalOffset')}
-            </div>
+            <div style={{marginTop:"8px",padding:"8px 12px",background:"rgba(217,119,6,0.12)",border:"1px solid rgba(217,119,6,0.3)",borderRadius:"8px",fontSize:"0.82rem",color:"#fbbf24",lineHeight:1.6}}>{t('form.kstHistoricalOffset')}</div>
           )}
 
           {/* 시간 + 성별 */}
-          <fieldset className="mt-4">
-            <div className="flex items-center justify-between mb-2">
-              <legend className="text-sm font-medium text-gray-500 dark:text-gray-400">{t('form.time')}</legend>
-              <label className="flex items-center gap-1.5 cursor-pointer">
+          <fieldset style={{border:"none",padding:0,margin:"16px 0 0"}}>
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:"8px"}}>
+              <legend style={S.label}>{t('form.time')}</legend>
+              <label style={{display:"flex",alignItems:"center",gap:"6px",cursor:"pointer"}}>
                 <input
                   type="checkbox"
                   checked={unknownTime}
@@ -353,15 +359,15 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
                   className="sr-only peer"
                 />
                 <div className="w-8 h-[18px] bg-gray-200 dark:bg-gray-700 rounded-full peer-checked:bg-gray-800 dark:peer-checked:bg-gray-200 relative transition-colors after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:w-3 after:h-3 after:bg-white after:rounded-full after:transition-transform peer-checked:after:translate-x-3.5" />
-                <span className="text-sm text-gray-500 dark:text-gray-400">{t('form.unknown')}</span>
+                <span style={{fontSize:"0.82rem",color:"rgba(167,139,250,0.5)"}}>{t('form.unknown')}</span>
               </label>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-[1fr_1fr_auto] gap-2 items-end">
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr auto",gap:"8px",alignItems:"end"}}>
               <select
                 value={hour}
                 onChange={e => setHour(Number(e.target.value))}
                 disabled={unknownTime}
-                className={selectClass}
+                style={{...S.field,opacity:unknownTime?0.4:1}}
               >
                 {Array.from({ length: 24 }, (_, i) => (
                   <option key={i} value={i}>{`${String(i).padStart(2, '0')}${t('form.hourSuffix')}`}</option>
@@ -371,7 +377,7 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
                 value={minute}
                 onChange={e => setMinute(Number(e.target.value))}
                 disabled={unknownTime}
-                className={selectClass}
+                style={{...S.field,opacity:unknownTime?0.4:1}}
               >
                 {Array.from({ length: 60 }, (_, i) => (
                   <option key={i} value={i}>{`${String(i).padStart(2, '0')}${t('form.minuteSuffix')}`}</option>
@@ -380,17 +386,13 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
 
               {/* 성별 — segmented control */}
               <div>
-                <div className="inline-flex h-10 rounded-lg bg-gray-100 dark:bg-gray-800 p-1">
+                <div style={S.segWrap}>
                   {(['M', 'F'] as const).map(g => (
                     <button
                       key={g}
                       type="button"
                       onClick={() => setGender(g)}
-                      className={`px-4 text-base rounded-md transition-all ${
-                        gender === g
-                          ? 'bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 shadow-sm font-medium'
-                          : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-                      }`}
+                      style={S.seg(gender===g)}
                     >
                       {g === 'M' ? t('form.male') : t('form.female')}
                     </button>
@@ -401,9 +403,9 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
           </fieldset>
 
           {/* 위치 */}
-          <fieldset className="mt-4">
-            <legend className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">{t('form.birthPlace')}</legend>
-            <div className="inline-flex h-10 rounded-lg bg-gray-100 dark:bg-gray-800 p-1 mb-2">
+          <fieldset style={{border:"none",padding:0,margin:"16px 0 0"}}>
+            <legend style={S.label}>{t('form.birthPlace')}</legend>
+            <div style={{...S.segWrap,marginBottom:"8px"}}>
               <button
                 type="button"
                 onClick={() => {
@@ -413,11 +415,7 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
                     syncCoordinates(selectedCity.lat, selectedCity.lon)
                   }
                 }}
-                className={`px-4 text-base rounded-md transition-all ${
-                  !manualCoords
-                    ? 'bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 shadow-sm font-medium'
-                    : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-                }`}
+                style={S.seg(!manualCoords)}
               >
                 {t('form.citySearch')}
               </button>
@@ -427,19 +425,15 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
                   setManualCoords(true)
                   setTimezoneError(null)
                 }}
-                className={`px-4 text-base rounded-md transition-all ${
-                  manualCoords
-                    ? 'bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 shadow-sm font-medium'
-                    : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-                }`}
+                style={S.seg(manualCoords)}
               >
                 {t('form.coordInput')}
               </button>
             </div>
             {manualCoords ? (
-              <div className="grid grid-cols-2 gap-2">
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"8px"}}>
                 <div>
-                  <label className="block text-sm text-gray-400 dark:text-gray-500 mb-1">{t('form.latitude')}</label>
+                  <label style={S.label}>{t('form.latitude')}</label>
                   <input
                     type="text"
                     inputMode="decimal"
@@ -449,11 +443,11 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
                     onKeyDown={e => handleCoordinateKeyDown(e, latitudeInput, latitude, applyLatitude)}
                     autoComplete="off"
                     spellCheck={false}
-                    className={inputClass}
+                    style={S.field}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-400 dark:text-gray-500 mb-1">{t('form.longitude')}</label>
+                  <label style={S.label}>{t('form.longitude')}</label>
                   <input
                     type="text"
                     inputMode="decimal"
@@ -463,16 +457,14 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
                     onKeyDown={e => handleCoordinateKeyDown(e, longitudeInput, longitude, applyLongitude)}
                     autoComplete="off"
                     spellCheck={false}
-                    className={inputClass}
+                    style={S.field}
                   />
                 </div>
               </div>
             ) : (
               <>
                 <CityCombobox selectedCity={selectedCity} onSelect={handleCitySelect} />
-                <p className="mt-1.5 text-sm text-gray-400 dark:text-gray-500 leading-relaxed">
-                  {locationSummary}
-                </p>
+                <p style={{marginTop:"6px",fontSize:"0.78rem",color:"rgba(167,139,250,0.45)",lineHeight:1.6}}>{locationSummary}</p>
               </>
             )}
             {manualCoords && (
@@ -484,16 +476,14 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
               <p className="mt-1.5 text-sm text-gray-400 dark:text-gray-500 leading-relaxed">
                 {t('form.timezoneDefault')} {timezoneDisplayLabel}
                 {isDstActive && (
-                  <span className="block text-xs mt-0.5">
+                  <span style={{display:"block",fontSize:"0.72rem",marginTop:"2px"}}>
                     ↳ {t('form.dstActive')}
                   </span>
                 )}
               </p>
             )}
             {timezoneError && (
-              <div className="mt-2 px-3 py-2 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg text-sm text-red-700 dark:text-red-400 leading-relaxed">
-                {timezoneError}
-              </div>
+              <div style={{marginTop:"8px",padding:"8px 12px",background:"rgba(220,38,38,0.12)",border:"1px solid rgba(220,38,38,0.3)",borderRadius:"8px",fontSize:"0.82rem",color:"#f87171",lineHeight:1.6}}>{timezoneError}</div>
             )}
           </fieldset>
 
@@ -503,10 +493,10 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
               <button
                 type="button"
                 onClick={() => setShowAdvanced(v => !v)}
-                className="flex items-center gap-1 text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                style={{display:"flex",alignItems:"center",gap:"4px",fontSize:"0.8rem",color:"rgba(167,139,250,0.4)",background:"none",border:"none",cursor:"pointer",padding:"2px 0"}}
               >
                 <svg
-                  className={`w-3 h-3 transition-transform ${showAdvanced ? 'rotate-90' : ''}`}
+                  style={{width:"12px",height:"12px",transform:showAdvanced?"rotate(90deg)":"none",transition:"transform 0.2s"}}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -517,9 +507,9 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
                 {t('form.advanced')}
               </button>
               {showAdvanced && (
-                <fieldset className="mt-2">
-                  <legend className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">{t('form.jasiMethod')}</legend>
-                  <div className="inline-flex h-10 rounded-lg bg-gray-100 dark:bg-gray-800 p-1">
+                <fieldset style={{border:"none",padding:0,margin:"8px 0 0"}}>
+                  <legend style={S.label}>{t('form.jasiMethod')}</legend>
+                  <div style={S.segWrap}>
                     {([
                       { value: 'unified' as const, label: t('form.unified') },
                       { value: 'split' as const, label: t('form.split') },
@@ -528,21 +518,13 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
                         key={opt.value}
                         type="button"
                         onClick={() => setJasiMethod(opt.value)}
-                        className={`px-4 text-base rounded-md transition-all ${
-                          jasiMethod === opt.value
-                            ? 'bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 shadow-sm font-medium'
-                            : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-                        }`}
+                        style={S.seg(jasiMethod===opt.value)}
                       >
                         {opt.label}
                       </button>
                     ))}
                   </div>
-                  <p className="mt-1.5 text-sm text-gray-400 dark:text-gray-500 leading-relaxed">
-                    {jasiMethod === 'unified'
-                      ? t('form.unifiedDesc')
-                      : t('form.splitDesc')}
-                  </p>
+                  <p style={{marginTop:"6px",fontSize:"0.78rem",color:"rgba(167,139,250,0.4)",lineHeight:1.6}}>{jasiMethod==='unified'?t('form.unifiedDesc'):t('form.splitDesc')}</p>
                 </fieldset>
               )}
             </div>
@@ -551,18 +533,18 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
           {/* 계산 버튼 */}
           <button
             type="submit"
-            style={{background:"linear-gradient(135deg,#7c3aed,#6d28d9)",color:"#fff",borderRadius:"12px",padding:"14px",fontSize:"1rem",fontWeight:700,border:"none",cursor:"pointer",width:"100%",letterSpacing:"0.05em"}}
-            className="mt-5 w-full h-11 bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900 text-base font-medium rounded-lg hover:bg-gray-700 dark:hover:bg-gray-300 active:scale-[0.98] transition-all"
+            style={{marginTop:"20px",width:"100%",padding:"14px",background:"linear-gradient(135deg,#7c3aed 0%,#6d28d9 50%,#5b21b6 100%)",color:"#fff",borderRadius:"12px",fontSize:"1rem",fontWeight:700,border:"none",cursor:"pointer",letterSpacing:"0.06em",boxShadow:"0 4px 20px rgba(109,40,217,0.45)",transition:"all 0.2s"}}
+            onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-1px)";e.currentTarget.style.boxShadow="0 6px 28px rgba(109,40,217,0.6)"}}
+            onMouseLeave={e=>{e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="0 4px 20px rgba(109,40,217,0.45)"}}
           >
             {t('form.calculate')}
           </button>
 
-          <p className="mt-3 text-center text-sm text-gray-400 dark:text-gray-500 leading-relaxed">
+          <p style={{marginTop:"12px",textAlign:"center",fontSize:"0.78rem",color:"rgba(167,139,250,0.38)",lineHeight:1.6}}>
             🔒 {t('form.privacy1')}<br />
             {t('form.privacy2')}
           </p>
         </div>
-      </div>
     </form>
   )
 })
