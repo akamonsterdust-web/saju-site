@@ -281,7 +281,7 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm dark:shadow-none">
+    <form onSubmit={handleSubmit} style={{background:"rgba(12,8,35,0.01)",borderRadius:"16px",border:"none",padding:0}}>
       <div className="flex flex-col items-center md:flex-row md:items-start gap-5">
         {/* 로고 */}
         <div className="flex flex-col items-center shrink-0" style={{display:"none"}}>
