@@ -92,7 +92,6 @@ input:focus, select:focus, textarea:focus {
   border-radius: 10px !important;
 }
 /* 선택된 세그먼트 */
-.bg-white.shadow-sm,
 .dark .bg-gray-700 {
   background: rgba(109,40,217,0.55) !important;
   border: 1px solid rgba(167,139,250,0.4) !important;
@@ -100,21 +99,9 @@ input:focus, select:focus, textarea:focus {
   color: #f0ebff !important;
 }
 
-/* ── 계산 버튼 ── */
-.bg-gray-800 {
-  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%) !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: 12px !important;
-  box-shadow: 0 4px 20px rgba(109,40,217,0.4) !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.05em !important;
-  transition: all 0.2s ease !important;
-}
-.hover\:bg-gray-700:hover {
-  background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%) !important;
-  box-shadow: 0 6px 24px rgba(109,40,217,0.55) !important;
-  transform: translateY(-1px) !important;
+/* ── bg-gray-800 다크 처리 ── */
+.dark .bg-gray-800 {
+  background: rgba(30, 22, 65, 0.7) !important;
 }
 
 /* ── 앰버(경고) 박스 ── */

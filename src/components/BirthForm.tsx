@@ -533,9 +533,10 @@ const BirthForm = forwardRef<BirthFormHandle, Props>(function BirthForm({ onSubm
           {/* 계산 버튼 */}
           <button
             type="submit"
-            style={{marginTop:"20px",width:"100%",padding:"14px",background:"linear-gradient(135deg,#7c3aed 0%,#6d28d9 50%,#5b21b6 100%)",color:"#fff",borderRadius:"12px",fontSize:"1rem",fontWeight:700,border:"none",cursor:"pointer",letterSpacing:"0.06em",boxShadow:"0 4px 20px rgba(109,40,217,0.45)",transition:"all 0.2s"}}
-            onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-1px)";e.currentTarget.style.boxShadow="0 6px 28px rgba(109,40,217,0.6)"}}
-            onMouseLeave={e=>{e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="0 4px 20px rgba(109,40,217,0.45)"}}
+            className=""
+            style={{marginTop:"20px",width:"100%",padding:"15px",background:"linear-gradient(135deg,#7c3aed 0%,#6d28d9 50%,#5b21b6 100%)",color:"#fff !important" as any,borderRadius:"12px",fontSize:"1.05rem",fontWeight:700,border:"none",cursor:"pointer",letterSpacing:"0.08em",boxShadow:"0 4px 20px rgba(109,40,217,0.5)",transition:"all 0.2s",display:"block"}}
+            onMouseEnter={e=>{(e.currentTarget as HTMLButtonElement).style.transform="translateY(-2px)";(e.currentTarget as HTMLButtonElement).style.boxShadow="0 8px 32px rgba(109,40,217,0.65)"}}
+            onMouseLeave={e=>{(e.currentTarget as HTMLButtonElement).style.transform="none";(e.currentTarget as HTMLButtonElement).style.boxShadow="0 4px 20px rgba(109,40,217,0.5)"}}
           >
             {t('form.calculate')}
           </button>
