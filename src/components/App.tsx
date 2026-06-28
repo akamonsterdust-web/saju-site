@@ -221,7 +221,7 @@ export default function App() {
           <p style={{fontSize:'0.72rem',color:'rgba(192,160,255,0.3)',margin:'0 0 10px'}}>🔮 곶휴노사주 · AI 명리학 서비스</p>
           <p style={{fontSize:'0.62rem',color:'rgba(192,160,255,0.2)',margin:'0 0 14px',lineHeight:1.7}}>사주는 참고용이며, 모든 선택은 본인의 의지에 달려 있습니다</p>
           <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:'8px 16px',fontSize:'0.62rem',color:'rgba(192,160,255,0.2)',marginBottom:'10px'}}>
-            <span>봉스랩(Bong's Lab)</span><span>사업자: 587-91-01974</span><span>대표: 최연봉</span><span>강원특별자치도 원주시 무실로 155</span>
+            <span>봉스랩(Bong's Lab)</span><span>사업자: 587-91-01974</span><span>대표: 최연봉</span><span>강원특별자치도 원주시 무실로 155</span><span>대표전화 : 010-2177-6018</span><span>서비스 이용 기간 : 결제 즉시 제공</span>
           </div>
           <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:'8px 16px',fontSize:'0.65rem'}}>
             {[{label:'이용약관',href:'/terms'},{label:'개인정보처리방침',href:'/privacy'},{label:'환불정책',href:'/refund'},{label:'소스코드',href:'https://github.com/akamonsterdust-web/saju-site'}].map(({label,href})=>(
